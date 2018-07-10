@@ -26,3 +26,8 @@ SELECT origin as 'Aeroport Origen', colYear as 'Any', colMonth as 'Mes',  avg(Ar
 */
 
 SELECT airport as 'Aeroport Origen', colYear as 'Any', colMonth as 'Mes',  avg(ArrDelay) as 'Retard Arribada' FROM usairlineflights.usairports INNER JOIN usairlineflights.flights ON usairports.IATA = flights.flightID GROUP BY airport;
+
+/*  5. Les companyies amb més vols cancelats. A més, han d’estar ordenades de forma
+que les companyies amb més cancelacions apareguin les primeres */
+
+SELECT description as 'Nom companyia aèria', count(cancelled) as 'Vols Cancel·lats' FROM usairlineflights.carriers INNER JOIN usairlineflights.flights ON carriers.CarrierCode = flights.UniqueCarrier group by Description HAVING COUNT('Vols Cancel·lats') >= 1 order by 'Vols Cancel·lats' desc;
