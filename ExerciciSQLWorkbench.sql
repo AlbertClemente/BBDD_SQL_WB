@@ -17,3 +17,12 @@ SELECT origin as 'Aeroport Origen', avg(ArrDelay) as 'Retard Arribada', avg(DepD
 	etc.*/
     
 SELECT origin as 'Aeroport Origen', colYear as 'Any', colMonth as 'Mes',  avg(ArrDelay) as 'Retard Arribada' FROM usairlineflights.flights group by origin;
+
+/* 4. Retard promig d’arribada dels vols, per mesos i segons l’aeroport origen (mateixa
+	consulta que abans i amb el mateix ordre). Però a més, ara volen que en comptes
+	del codi de l’aeroport es mostri el nom de la ciutat.
+	Los Angeles, 2000, 01, retard
+	Los Angeles, 2000, 02, retard
+*/
+
+SELECT airport as 'Aeroport Origen', colYear as 'Any', colMonth as 'Mes',  avg(ArrDelay) as 'Retard Arribada' FROM usairlineflights.usairports INNER JOIN usairlineflights.flights ON usairports.IATA = flights.flightID GROUP BY airport;
