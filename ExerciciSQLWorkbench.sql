@@ -30,4 +30,19 @@ SELECT airport as 'Aeroport Origen', colYear as 'Any', colMonth as 'Mes',  avg(A
 /*  5. Les companyies amb més vols cancelats. A més, han d’estar ordenades de forma
 que les companyies amb més cancelacions apareguin les primeres */
 
-SELECT description as 'Nom companyia aèria', count(cancelled) as 'Vols Cancel·lats' FROM usairlineflights.carriers INNER JOIN usairlineflights.flights ON carriers.CarrierCode = flights.UniqueCarrier group by Description HAVING COUNT('Vols Cancel·lats') >= 1 order by 'Vols Cancel·lats' desc;
+SELECT description as 'Nom companyia aèria', count(cancelled) as 'Vols Cancel·lats' 
+FROM usairlineflights.flights
+INNER JOIN usairlineflights.carriers  
+ON carriers.CarrierCode = flights.UniqueCarrier 
+where cancelled = 1
+group by description 
+order by 'Vols Cancel·lats' desc;
+
+/*  6. L’identificador dels 10 avions que més kilòmetres han recorregut fent vols
+comercials: */
+
+SELECT TailNum as 'Avió', sum(distance) as 'Distància' 
+from usairlineflights.flights 
+group by TailNum 
+order by Distància 
+DESC LIMIT 10;
