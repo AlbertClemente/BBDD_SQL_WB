@@ -1,0 +1,14 @@
+Les dades d'aquest dataset consisteixen en tots els vols comercials realitzats a EEUU l'any XXX.
+El dataset original conté tots els vols des de l'octubre de 1987 fins l'Abril de 2008 i ocupa 12GB, per això hem decidit limitar-ho a un sol any.
+En el següent enllaç podeu trobar la informació d'aquest dataset, on indica el significat de cada columna i possibles valors que pot prendre.
+
+Vols: http://stat-computing.org/dataexpo/2009/the-data.html
+Dades addicionals (Aeroports (Airports), companyies (Carriers) i avions (Planes)): http://stat-computing.org/dataexpo/2009/supplemental-data.html
+
+On canviar la varaible --secure-file-priv: 
+On apunta la variable --secure-file-priv: C:\ProgramData\MySQL\MySQL Server 8.0\Uploads
+-------------------------------------------------------------------------------------------------------
+Punts a tenir en compte:
+	· Sembla que si importes dades des de la interfície (botó dret al icono de la BD --> table data import wizzard) no dóna problemes, però si es vol fer des d'un script de forma (LOAD DATA INFILE), pot donar problemes per motius de seguretat. Per a resoldre això s'han d'importar les dadades des d'un directory especificat per MySQL, que es pot consultar mitjançant la comanda: SHOW VARIABLES LIKE "secure_file_priv";
+
+	· Options File és a Server --> Options File
