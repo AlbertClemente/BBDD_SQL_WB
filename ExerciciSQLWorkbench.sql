@@ -46,3 +46,21 @@ from usairlineflights.flights
 group by TailNum 
 order by Distància 
 DESC LIMIT 10;
+
+/*  7. Companyies amb el seu retard promig només d’aquelles les quals els seus vols
+arriben al seu destí amb un retràs promig major de 10 minuts. */
+
+/*SELECT description as 'Nom companyia aèria', avg(ArrDelay) as 'Retard Arribada'
+FROM usairlineflights.flights
+INNER JOIN usairlineflights.carriers
+ON carriers.CarrierCode = flights.UniqueCarrier
+WHERE 'Retard Arribada' > 10
+group by description;*/
+
+SELECT Description as 'Companyia', avg(ArrDelay) as 'Retard'
+FROM usairlineflights.flights
+LEFT JOIN usairlineflights.carriers
+ON flights.UniqueCarrier = carriers.CarrierCode
+group by Companyia
+HAVING Retard > 10
+
