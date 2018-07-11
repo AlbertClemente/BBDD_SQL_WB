@@ -5,7 +5,7 @@ FROM usairlineflights.flights;
 -- 2. Retard promig de sortida i arribada segons l’aeroport origen.
 SELECT origin as 'Aeroport Origen', avg(ArrDelay) as 'Retard Arribada', avg(DepDelay) as 'Retard Sortida' 
 FROM usairlineflights.flights 
-group by origin;
+group by 'Aeroport Origen';
 
 /* 3. Retard promig d’arribada dels vols, per mesos i segons l’aeroport origen. A més,
 	volen que els resultat es mostrin de la següent forma:
@@ -21,7 +21,7 @@ group by origin;
     
 SELECT origin as 'Aeroport Origen', colYear as 'Any', colMonth as 'Mes',  avg(ArrDelay) as 'Retard Arribada'
 FROM usairlineflights.flights 
-group by origin;
+group by 'Aeroport Origen', 'Any', 'Mes';
 
 /* 4. Retard promig d’arribada dels vols, per mesos i segons l’aeroport origen (mateixa
 	consulta que abans i amb el mateix ordre). Però a més, ara volen que en comptes
@@ -34,7 +34,7 @@ SELECT airport as 'Aeroport Origen', colYear as 'Any', colMonth as 'Mes',  avg(A
 FROM usairlineflights.usairports 
 INNER JOIN usairlineflights.flights 
 ON usairports.IATA = flights.flightID 
-GROUP BY airport;
+group by 'Aeroport Origen', 'Any', 'Mes';
 
 /*  5. Les companyies amb més vols cancelats. A més, han d’estar ordenades de forma
 que les companyies amb més cancelacions apareguin les primeres */
