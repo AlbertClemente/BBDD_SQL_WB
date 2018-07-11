@@ -21,7 +21,8 @@ group by 'Aeroport Origen';
     
 SELECT origin as 'Aeroport Origen', colYear as 'Any', colMonth as 'Mes',  avg(ArrDelay) as 'Retard Arribada'
 FROM usairlineflights.flights 
-group by 'Aeroport Origen', 'Any', 'Mes';
+group by 'Aeroport Origen', 'Any', 'Mes'
+order by 'Aeroport Origen', 'Any', 'Mes' asc;
 
 /* 4. Retard promig d’arribada dels vols, per mesos i segons l’aeroport origen (mateixa
 	consulta que abans i amb el mateix ordre). Però a més, ara volen que en comptes
@@ -34,7 +35,8 @@ SELECT airport as 'Aeroport Origen', colYear as 'Any', colMonth as 'Mes',  avg(A
 FROM usairlineflights.usairports 
 INNER JOIN usairlineflights.flights 
 ON usairports.IATA = flights.flightID 
-group by 'Aeroport Origen', 'Any', 'Mes';
+group by 'Aeroport Origen', 'Any', 'Mes'
+order by 'Aeroport Origen', 'Any', 'Mes' asc;
 
 /*  5. Les companyies amb més vols cancelats. A més, han d’estar ordenades de forma
 que les companyies amb més cancelacions apareguin les primeres */
